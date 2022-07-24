@@ -49,7 +49,7 @@ export const updateBlog = async(req, res) => {
     if(results.affectedRows > 0) return res.json({"Message": `Blog ID: ${id} has been updated.`})
   } catch (error) {
     console.log(error.message);
-}
+  }
 }
 
 export const deleteBlog = async(req, res) => {

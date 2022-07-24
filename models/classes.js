@@ -26,6 +26,15 @@ export const getClassById = (id) => (
   )
 );
 
+export const getClassesByDay = (day) => (
+  db_conn.query(
+    `SELECT class_name, CONCAT(firstname, " ", lastname) as trainer, description, day, start_time, end_time, level, spots_available
+    FROM classes
+    JOIN users ON trainer_id = user_id
+    WHERE day = ?`, [day]
+  )
+)
+
 export const updateClassById = (id, trainer_id, class_name, description, day, start_time, end_time, level, spots_available) => (
   db_conn.query(
     `UPDATE classes 

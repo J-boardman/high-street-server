@@ -8,7 +8,6 @@ router.route('/')
   .post(verifyRoles('admin', 'trainer'), createClass)
   .delete(verifyRoles('admin', 'trainer'), deleteClass);
 
-router.route('/:id')
-  .post(verifyRoles('admin', 'trainer'), updateClass)
+router.route('/:id').post(verifyRoles('admin', 'trainer'), updateClass);
 
 export default router;

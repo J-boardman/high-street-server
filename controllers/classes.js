@@ -1,5 +1,5 @@
 import validator from "validator";
-import { createNewClass, deleteClassById, getClassById, getClasses, updateClassById } from "../models/classes.js"
+import { createNewClass, deleteClassById, getClassById, getClasses, getClassesByDay, updateClassById } from "../models/classes.js"
 
 export const createClass = async(req, res) => {
   const { trainer_id, class_name, description, day, start_time, end_time, level, spots_available } = req.body;
@@ -37,6 +37,16 @@ export const getClass = async(req, res) => {
   
   if(!foundClass) return res.status(204).json({"Message": `Class with the ID: ${id} not found.`});
   res.json(foundClass)
+}
+
+export const getClassesByDays = async(req, res) => {
+  if(!req?.params?.day) return res.status(400).json({"Message": "Class day required"});
+  const { day } = req.params
+
+  const [foundClasses] = await getClassesByDay(day);
+  
+  if(!foundClasses) return res.status(204).json({"Message": `No classes for ${day} not found.`});
+  res.json(foundClasses)
 }
 
 export const updateClass = async(req, res) => {
