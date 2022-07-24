@@ -8,12 +8,13 @@ import cookieParser from 'cookie-parser';
 import verifyJWT from './middleware/verifyJWT.js'
 
 import register from "./routes/register.js"
-// import login from "./routes/login.js"
-// import logout from "./routes/logout.js"
+import login from "./routes/login.js"
+import logout from "./routes/logout.js"
+import classListings from "./routes/classes.js"
 
+import users from "./routes/api/users.js"
+import classes from "./routes/api/classes.js"
 // import blogs from "./routes/api/blogs.js"
-// import users from "./routes/api/users.js"
-// import classes from "./routes/api/classes.js"
 
 const app = express();
 const PORT = process.env.port || 3500;
@@ -35,12 +36,13 @@ app.use(cookieParser());
 
 // Routes
 app.use('/register', register);
-// app.use('/login', login);
-// app.use('/logout', logout);
+app.use('/login', login);
+app.use('/logout', logout);
+app.use('/classes', classListings)
 
-// app.use(verifyJWT)
-// app.use('/users', users);
-// app.use('/classes', classes);
+app.use(verifyJWT)
+app.use('/api/classes', classes);
+app.use('/users', users);
 // app.use('/blogs', blogs);
 
 // Open port / server

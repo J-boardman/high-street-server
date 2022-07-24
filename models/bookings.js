@@ -27,8 +27,8 @@ export const getBookingById = (id) => (
   )
 );
 
-export const updateBooking = (id, class_id, customer_id) => (
+export const updateBookingById = (id, class_id, customer_id) => (
   db_conn.query(`UPDATE bookings SET class_id = ?, customer_id = ? WHERE booking_id = ?`, [class_id, customer_id, id])
 );
 
-export const deleteBooking = (id) => db_conn.query(`DELETE FROM bookings WHERE booking_id = ?`, [id]);
+export const deleteBookingById = (id) => db_conn.query(`DELETE FROM bookings WHERE booking_id = ?`, [id]);

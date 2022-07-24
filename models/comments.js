@@ -1,7 +1,6 @@
 import { db_conn } from "../config/db_conn.js";
 
 // ? CRUD
-
 export const createComment = (blog_id, user_id, body) => (
   db_conn.query(
     `INSERT INTO comments (blog_id, user_id, body, posted_at, updated_at)
@@ -18,7 +17,11 @@ export const getComments = (id) => (
   )
 );
 
-export const updateComment = (id, body, updated_at) => (
+export const getCommentById = (id) => (
+  db_conn.query(`SELECT * FROM comments WHERE comment_id = ?`, [id])
+);
+
+export const updateCommentById = (id, body, updated_at) => (
   db_conn.query(
     `UPDATE comments
     SET body = ?, updated_at = NOW()
@@ -26,4 +29,4 @@ export const updateComment = (id, body, updated_at) => (
   )
 );
 
-export const deleteComment = (id) => db_conn.query(`DELETE FROM comments WHERE comment_id = ?`, [id]);
+export const deleteCommentById = (id) => db_conn.query(`DELETE FROM comments WHERE comment_id = ?`, [id]);

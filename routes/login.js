@@ -1,4 +1,4 @@
-export default 
+import express from "express"
+import login from "../controllers/login.js"
 
-Express.Router()
-  .post('/', )
+export default express.Router().post('/', login);
