@@ -1,9 +1,9 @@
 import { db_conn } from "../config/db_conn.js";
 
 // ? CRUD
-export const createBlog = (author_id, title, body) => (
+export const createNewBlog = (author_id, title, body) => (
   db_conn.query(
-    `INSERT INTO blogs (author_id, body, posted_at, updated_at) VALUES (?, ?, NOW(), NOW())`,
+    `INSERT INTO blogs (author_id, title, body, posted_at, updated_at) VALUES (?, ?, ?, NOW(), NOW())`,
     [author_id, title, body]
   )
 );

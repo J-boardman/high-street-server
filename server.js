@@ -14,7 +14,7 @@ import classListings from "./routes/classes.js"
 
 import users from "./routes/api/users.js"
 import classes from "./routes/api/classes.js"
-// import blogs from "./routes/api/blogs.js"
+import blogs from "./routes/api/blogs.js"
 
 const app = express();
 const PORT = process.env.port || 3500;
@@ -43,7 +43,7 @@ app.use('/classes', classListings)
 app.use(verifyJWT)
 app.use('/api/classes', classes);
 app.use('/users', users);
-// app.use('/blogs', blogs);
+app.use('/blogs', blogs);
 
 // Open port / server
 app.listen(PORT, () => console.log(`Server live at http://localhost:${PORT}`))

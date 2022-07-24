@@ -30,7 +30,7 @@ export const getAllClasses = async(req, res) => {
 }
 
 export const getClass = async(req, res) => {
-  if(req?.params?.class_id) return res.status(400).json({"Message": "Class ID required"});
+  if(!req?.params?.id) return res.status(400).json({"Message": "Class ID required"});
   const { id } = req.params
 
   const [foundClass] = await getClassById(id).then(classes => classes[0]);
@@ -40,7 +40,7 @@ export const getClass = async(req, res) => {
 }
 
 export const updateClass = async(req, res) => {
-  if(req?.params?.class_id) return res.status(400).json({"Message": "Class ID required"});
+  if(!req?.params?.id) return res.status(400).json({"Message": "Class ID required"});
   const { id } = req.params
   const { trainer_id, class_name, description, day, start_time, end_time, level, spots_available } = req.body;
   try {
