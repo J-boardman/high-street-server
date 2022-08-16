@@ -11,7 +11,7 @@ export const createNewClass = (trainer_id, name, description, day, start_time, e
 
 export const getClasses = () => (
   db_conn.query(
-    `SELECT class_id, class_name, CONCAT(firstname, " ", lastname) as trainer, description, day, start_time, end_time, level, spots_available
+    `SELECT class_id, trainer_id, class_name, CONCAT(firstname, " ", lastname) as trainer, description, day, start_time, end_time, level, spots_available
     FROM classes
     JOIN users ON trainer_id = user_id`
   )
@@ -19,7 +19,7 @@ export const getClasses = () => (
 
 export const getClassById = (id) => (
   db_conn.query(
-    `SELECT class_name, CONCAT(firstname, " ", lastname) as trainer, description, day, start_time, end_time, level, spots_available
+    `SELECT class_id, trainer_id, class_name, CONCAT(firstname, " ", lastname) as trainer, description, day, start_time, end_time, level, spots_available
     FROM classes
     JOIN users ON trainer_id = user_id
     WHERE class_id = ?`, [id]
@@ -28,7 +28,7 @@ export const getClassById = (id) => (
 
 export const getClassesByDay = (day) => (
   db_conn.query(
-    `SELECT class_name, CONCAT(firstname, " ", lastname) as trainer, description, day, start_time, end_time, level, spots_available
+    `SELECT class_id, trainer_id, class_name, CONCAT(firstname, " ", lastname) as trainer, description, day, start_time, end_time, level, spots_available
     FROM classes
     JOIN users ON trainer_id = user_id
     WHERE day = ?`, [day]

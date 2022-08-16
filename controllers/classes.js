@@ -4,9 +4,10 @@ import { createNewClass, deleteClassById, getClassById, getClasses, getClassesBy
 export const createClass = async(req, res) => {
   const { trainer_id, class_name, description, day, start_time, end_time, level, spots_available } = req.body;
 
+  console.log(req.body)
   try {
     const [results] = await createNewClass(
-      validator.escape(trainer_id),
+      trainer_id,
       validator.escape(class_name),
       validator.escape(description),
       validator.escape(day),

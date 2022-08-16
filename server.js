@@ -15,6 +15,7 @@ import register from "./routes/register.js"
 import login from "./routes/login.js"
 import logout from "./routes/logout.js"
 import classListings from "./routes/classes.js"
+import refresh from './routes/refresh.js';
 
 // API Routes
 import users from "./routes/api/users.js"
@@ -45,8 +46,9 @@ app.use('/register', register);
 app.use('/login', login);
 app.use('/logout', logout);
 app.use('/classes', classListings)
+app.use('/refresh', refresh)
 
-app.use(verifyJWT)
+app.use(verifyJWT);
 app.use('/api/classes', classes);
 app.use('/users', users);
 app.use('/blogs', blogs);

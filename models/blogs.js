@@ -10,14 +10,14 @@ export const createNewBlog = (author_id, title, body) => (
 
 export const getAllBlogs = () => (
   db_conn.query(`
-    SELECT blog_id, CONCAT(firstname, " ", lastname) as author, title, body, posted_at, updated_at 
+    SELECT blog_id, author_id, CONCAT(firstname, " ", lastname) as author, title, body, posted_at, updated_at 
     FROM blogs
     JOIN users ON author_id = user_id`
   )
 )
 export const getBlogById = (id) => (
   db_conn.query(`
-    SELECT blog_id, CONCAT(firstname, " ", lastname) as author, title, body, posted_at, updated_at 
+    SELECT blog_id, author_id, CONCAT(firstname, " ", lastname) as author, title, body, posted_at, updated_at 
     FROM blogs
     JOIN users ON author_id = user_id
     WHERE blog_id = ?`, [id]
@@ -26,7 +26,7 @@ export const getBlogById = (id) => (
 
 export const getBlogBySearch = (search) => (
   db_conn.query(
-    `SELECT blog_id, CONCAT(firstname, " ", lastname) as author, title, body, posted_at, updated_at 
+    `SELECT blog_id, author_id, CONCAT(firstname, " ", lastname) as author, title, body, posted_at, updated_at 
     FROM blogs
     JOIN users ON author_id = user_id
     WHERE blog_id LIKE ?

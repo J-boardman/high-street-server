@@ -1,15 +1,9 @@
-import validator from "validator";
 import { createNewComment, deleteCommentById, getAllComments, updateCommentById } from "../models/comments.js"
 
 export const createComment = async(req, res) => {
   const { blog_id, author_id, body } = req.body;
-
   try {
-    const [results] = await createNewComment(
-      blog_id,
-      author_id,
-      validator.escape(body)
-    )
+    const [results] = await createNewComment(blog_id, author_id, body)
 
     res.status(200).json({"Success": `Comment created with the ID: ${results.insertId}`})
   } catch (error) {

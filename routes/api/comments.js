@@ -6,8 +6,8 @@ const router = express.Router()
 router.route('/')
   .post(createComment)
   .delete(deleteComment);
-
-router.route('/:id')
+  
+  router.route('/:id')
   .post(updateComment)
 
 export default router;

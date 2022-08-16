@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken"
-import { getUserByToken } from "../models/users";
+import { getUserByRefreshToken, updateAccessToken } from "../models/users.js";
 
 export default async (req, res) => {
   const cookies = req.cookies;
@@ -7,10 +7,9 @@ export default async (req, res) => {
   
   const refreshToken = cookies.jwt;
 
-  const [foundUser] = await getUserByToken(refreshToken);
+  const [foundUser] = await getUserByRefreshToken(refreshToken).then(users => users[0]);
   if(!foundUser) return res.sendStatus(403);
-
-  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => {
+  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, async(err, decoded) => {
     if (err || foundUser.username !== decoded.username) return res.sendStatus(403);
     const accessToken = jwt.sign(
       {
@@ -22,6 +21,7 @@ export default async (req, res) => {
       process.env.ACCESS_TOKEN_SECRET,
       { expiresIn: "30s" }
     );
-    res.json({ accessToken })
+    await updateAccessToken(foundUser.user_id, accessToken)
+    res.json({ user_id: foundUser.user_id, role: foundUser.role, accessToken })
   });
 }

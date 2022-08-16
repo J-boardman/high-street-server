@@ -1,0 +1,48 @@
+<!DOCTYPE bookings
+[
+<!ELEMENT booking (
+  trainer,
+  class_name,
+  class_time,
+  level,
+  participants
+)>
+<!ELEMENT trainer (name)>
+<!ELEMENT class_name (#PCDATA)>
+<!ELEMENT class_day (#PCDATA)>
+<!ELEMENT class_times (start_time, end_time)>
+<!ELEMENT level (#PCDATA)>
+<!ELEMENT participants (participant)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT start_time (#PCDATA)>
+<!ELEMENT end_time (#PCDATA)>
+<!ELEMENT participant (id, name)>
+<!ELEMENT id (#PCDATA)>
+]>
+
+<booking>
+  <trainer>
+    <name>John Haack</name>
+  </trainer>
+  <class_name>Powerlifting</class_name>
+  <class_day>Monday</class_day>
+  <class_time>
+    <start_time>9:00:00</start_time>
+    <end_time>10:00:00</end_time>
+  </class_time>
+  <level>Hard</level>
+  <participants>
+    <participant>
+      <id>1</id>
+      <name>Jane Doe</name>
+    </participant>
+    <participant>
+      <id>2</id>
+      <name>Jane Doe</name>
+    </participant>
+    <participant>
+      <id>3</id>
+      <name>Jane Joe</name>
+    </participant>
+  </participants>
+</booking>

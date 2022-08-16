@@ -7,7 +7,7 @@ export const createNewComment = (blog_id, author_id, body) => db_conn.query(
 );
 
 export const getAllComments = (id) => db_conn.query(
-  `SELECT comment_id, CONCAT(firstname, " ", lastname) as author, body, posted_at, updated_at
+  `SELECT comment_id, author_id, CONCAT(firstname, " ", lastname) as author, body, posted_at, updated_at
   FROM comments
   JOIN users on author_id = user_id
   WHERE blog_id = ?`, [id]

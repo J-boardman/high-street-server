@@ -1,4 +1,4 @@
-import { getUserByUsername, UpdateRefreshToken } from "../models/users.js";
+import { getUserByUsername, updateAccessToken, updateRefreshToken } from "../models/users.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken"
 
@@ -29,8 +29,8 @@ export default async (req, res) => {
     process.env.REFRESH_TOKEN_SECRET,
     { expiresIn: "1d"}
   );
-
-  await UpdateRefreshToken(foundUser.user_id, refreshToken);
+  await updateAccessToken(foundUser.user_id, accessToken);
+  await updateRefreshToken(foundUser.user_id, refreshToken);
 
   res.cookie("jwt", refreshToken, {
     httpOnly: true,
@@ -38,5 +38,5 @@ export default async (req, res) => {
     maxAge: 24 * 60 * 60 * 1000
   }); // secure: true over https
 
-  res.json({ role: foundUser.role, accessToken })
+  res.json({ user_id: foundUser.user_id, role: foundUser.role, accessToken })
 }
