@@ -41,11 +41,7 @@ export const updateBlog = async(req, res) => {
   const { title, body } = req.body;
   
   try {
-    const [results] = await updateBlogById(
-      id,
-      validator.escape(title),
-      validator.escape(body)
-    );
+    const [results] = await updateBlogById(id, title, body);
     if(results.affectedRows > 0) return res.json({"Message": `Blog ID: ${id} has been updated.`})
   } catch (error) {
     console.log(error.message);

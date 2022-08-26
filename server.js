@@ -22,6 +22,7 @@ import users from "./routes/api/users.js"
 import classes from "./routes/api/classes.js"
 import blogs from "./routes/api/blogs.js"
 import comments from "./routes/api/comments.js"
+import bookings from "./routes/api/bookings.js"
 
 const app = express();
 const PORT = process.env.port || 3500;
@@ -53,6 +54,7 @@ app.use('/api/classes', classes);
 app.use('/users', users);
 app.use('/blogs', blogs);
 app.use('/comments', comments);
+app.use('/bookings', bookings)
 
 // Open port / server
 app.listen(PORT, () => console.log(`Server live at http://localhost:${PORT}`));
