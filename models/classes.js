@@ -32,8 +32,16 @@ export const getClassesByDay = (day) => (
     FROM classes
     JOIN users ON trainer_id = user_id
     WHERE day = ?`, [day]
-  )
+  ) 
 )
+
+export const getClassAvailability = (id) => (
+  db_conn.query(`SELECT spots_available FROM classes WHERE class_id = ?`, [id])
+)
+
+export const changeClassAvailability = (spots, id) => (
+  db_conn.query(`UPDATE classes SET spots_available = ? WHERE class_id = ?`, [spots, id])
+);
 
 export const updateClassById = (id, trainer_id, class_name, description, day, start_time, end_time, level, spots_available) => (
   db_conn.query(

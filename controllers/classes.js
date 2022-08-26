@@ -1,5 +1,5 @@
 import validator from "validator";
-import { createNewClass, deleteClassById, getClassById, getClasses, getClassesByDay, updateClassById } from "../models/classes.js"
+import { createNewClass, deleteClassById, getClassAvailability, getClassById, getClasses, getClassesByDay, updateClassById } from "../models/classes.js"
 
 export const createClass = async(req, res) => {
   const { trainer_id, class_name, description, day, start_time, end_time, level, spots_available } = req.body;
@@ -48,6 +48,20 @@ export const getClassesByDays = async(req, res) => {
   
   if(!foundClasses) return res.status(204).json({"Message": `No classes for ${day} not found.`});
   res.json(foundClasses)
+}
+
+export const getAvailability = async(req, res) => {
+  if(!req?.params?.id) return res.status(400).json({"Message": "Class ID required"});
+  const { id } = req.params
+
+  try {
+    const [spotsAvailable] = await getClassAvailability(id);
+    if(!spotsAvailable.length) return res.status(204).json({"Message": `No classes with id=${id} found.`})
+    res.status(200).json(spotsAvailable)
+  } catch (error) {
+    res.status(500).json({"Message":"Failed to get class availability."})
+    console.log(error)
+  }
 }
 
 export const updateClass = async(req, res) => {
