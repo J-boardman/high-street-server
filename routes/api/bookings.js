@@ -11,7 +11,7 @@ router.route('/')
 
 router.route('/:id').get(getBooking);
 router.route('/class/:id').get(getBookingsByClass);
-router.route('/customer/:id').get(verifyRoles('trainer', 'admin'), getBookingsByCustomer);
+router.route('/customer/:id').get(getBookingsByCustomer);
 router.route('/trainer/:id').get(verifyRoles('trainer', 'admin'), getBookingsByTrainer);
 
 export default router;
