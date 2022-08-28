@@ -11,7 +11,6 @@ export const getAllUsers = async(req, res) => {
 export const getUser = async (req, res) => {
   if(req?.params?.user_id) return res.status(400).json({"Message": "User ID required"});
   const { id } = req.params
-  console.log(req.params);
 
   const [foundUser] = await getUserById(id).then(users => users[0]);
   
