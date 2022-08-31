@@ -59,7 +59,7 @@ export const getBookingsByCustomer = async(req, res) => {
     console.log(error)
   }
 }
-
+  
 export const getBookingsByTrainer = async(req, res) => {
   if(!req?.params?.id) return res.status(400).json({"Message": "Booking ID required"});
   try {

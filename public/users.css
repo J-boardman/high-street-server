@@ -1,0 +1,41 @@
+users {
+  font-family: sans-serif;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+heading {
+  font-size: 2rem;
+}
+
+subheading {
+  font-size: 1.25rem;
+  margin: 2rem 0;
+}
+
+heading, subheading, name, user_id {
+  font-weight: bold;
+}
+
+heading, subheading, user {
+  display: block;
+}
+
+user {
+  margin-bottom: 1rem;
+}
+
+link {
+  background-color: #570df8;
+  border-radius: 0.5rem;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 1rem;
+  position:relative;
+  top: 2rem;
+}
+
+link:hover {
+  background-color: #4506cb;
+}

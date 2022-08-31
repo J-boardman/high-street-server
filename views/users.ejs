@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/users.css"?>
+<!DOCTYPE users
+[
+<!ELEMENT users (
+  heading,
+  subheading,
+  user,
+  link
+  )>
+  <!ELEMENT name (firstname, lastname)>
+  <!ELEMENT user_id (#PCDATA)>
+  <!ELEMENT username (#PCDATA)>
+  <!ELEMENT role (#PCDATA)>
+  <!ELEMENT firstname (#PCDATA)>
+  <!ELEMENT lastname (#PCDATA)>
+  <!ELEMENT link (#PCDATA)>
+  ]>
+  <users>
+    <heading>High Street Strength</heading>
+    <subheading>Current users:</subheading>
+    <% for (let user of users) { %>
+    <user>
+      <user_id> #<%= user.user_id %></user_id>
+      <name>
+        <firstname><%= user.firstname %></firstname>
+        <lastname><%= user.lastname %></lastname>
+      </name>
+      <username>( username: <%= user.username %>, </username>
+      <role>role: <%= user.role %> )</role>
+    </user>
+    <% } %>
+    <link id="link">BACK</link>
+    <xhtml:script xmlns:xhtml="http://www.w3.org/1999/xhtml"  type="application/javascript">
+      document.querySelector('#link').addEventListener('click', () => window.location.href="http://localhost:3000/classes")
+    </xhtml:script>
+</users>

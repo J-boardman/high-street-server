@@ -69,3 +69,4 @@ export const checkDuplicateBookings = (customer_id, booking_id) => (
 );
 
 export const deleteBookingById = (id) => db_conn.query(`DELETE FROM bookings WHERE booking_id = ?`, [id]);
+export const deleteBookingByClassId = (id) => db_conn.query(`DELETE FROM bookings WHERE class_id = ?`, [id]);

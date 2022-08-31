@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/classList.css"?>
+<!DOCTYPE class_list
+[
+<!ELEMENT class_list (
+  heading,  
+  class_details,
+  booking,
+  link
+  )>
+  <!ELEMENT class_name (#PCDATA)>
+  <!ELEMENT trainer (name)>
+  <!ELEMENT class_day (#PCDATA)>
+  <!ELEMENT class_times (start_time, end_time)>
+  <!ELEMENT customer (id, name)>
+  <!ELEMENT start_time (#PCDATA)>
+  <!ELEMENT end_time (#PCDATA)>
+  <!ELEMENT id (#PCDATA)>
+  <!ELEMENT name (#PCDATA)>
+  ]>
+  <class_list>
+    <heading>High Street Strength</heading>
+    <class_details>
+      <class_name>Current bookings for <%= bookings[0].class_name %></class_name>
+      <trainer> 
+        <name>with <%= bookings[0].trainer %></name>
+      </trainer>
+      <class_times>
+        <class_day><%= bookings[0].day %></class_day>
+        <start_time><%= bookings[0].start_time.slice(0,5) %> -</start_time>
+        <end_time><%= bookings[0].end_time.slice(0,5) %></end_time>
+      </class_times>
+    </class_details>
+    <% for(let booking of bookings) { %>
+    <booking>
+      <customer> 
+        <id>Booking #<%= booking.booking_id %>: </id>
+        <name><%= booking.customer %></name>
+      </customer>
+    </booking>
+    <% } %>
+    <link id="link">BACK</link>
+    document.querySelector('#link').addEventListener('click', () => window.location.href="http://localhost:3000/classes")
+    <xhtml:script xmlns:xhtml="http://www.w3.org/1999/xhtml"  type="application/javascript">
+    </xhtml:script>
+</class_list>

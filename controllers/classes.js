@@ -1,5 +1,5 @@
 import validator from "validator";
-import { createNewClass, deleteClassById, getClassAvailability, getClassById, getClasses, getClassesByDay, updateClassById } from "../models/classes.js"
+import { createNewClass, deleteClassById, getClassAvailability, getClassById, getClasses, getClassesByDay, getClassesByTrainerId, updateClassById } from "../models/classes.js"
 
 export const createClass = async(req, res) => {
   const { trainer_id, class_name, description, day, start_time, end_time, level, spots_available } = req.body;
@@ -46,7 +46,17 @@ export const getClassesByDays = async(req, res) => {
 
   const [foundClasses] = await getClassesByDay(day);
   
-  if(!foundClasses) return res.status(204).json({"Message": `No classes for ${day} not found.`});
+  if(!foundClasses) return res.status(204).json({"Message": `No classes for ${day} found.`});
+  res.json(foundClasses)
+}
+
+export const getClassesByTrainer = async(req, res) => {
+  if(!req?.params?.id) return res.status(400).json({"Message": "Trainer ID required"});
+  const { id } = req.params
+
+  const [foundClasses] = await getClassesByTrainerId(id);
+  
+  if(!foundClasses.length) return res.status(204).json({"Message": `No classes found.`});
   res.json(foundClasses)
 }
 
@@ -92,8 +102,10 @@ export const deleteClass = async(req, res) => {
 
   try {
     const [results] = await deleteClassById(id);
+    console.log(results)
     if(results.affectedRows > 0) return res.json({"Message": `Class ID: ${id} has been deleted.`})
   } catch (error) {
     console.log(error.message)
+    res.status(409).json({message: "A customer has already booked this class"})
   }
 }

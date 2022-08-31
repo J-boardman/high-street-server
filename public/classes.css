@@ -1,0 +1,40 @@
+class_list {
+  font-family: sans-serif;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+heading {
+  font-size: 2rem;
+}
+
+
+class_details {
+  font-size: 1.25rem;
+  margin: 2rem 0;
+}
+
+class_name, class_times, booking, heading, class_details {
+  display: block;
+}
+
+heading, class_details {
+  font-weight: bold;
+}
+
+booking {
+  margin-bottom: 3rem;
+}
+
+link {
+  color: white;
+  background-color: #570df8;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 1rem;
+}
+
+link:hover {
+  background-color: #4506cb;
+}

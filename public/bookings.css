@@ -1,0 +1,41 @@
+bookings, class_list {
+  font-family: sans-serif;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+heading {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+customer {
+  font-size: 1.25rem;
+  display: block;
+  margin: 2rem 0;
+}
+
+booking {
+  margin: 2rem 0;
+}
+
+booking, class_details, customer > name, id {
+  display: block;
+}
+
+trainer, class_name, customer {
+  font-weight: bold;
+}
+
+link {
+  color: white;
+  background-color: #570df8;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 1rem;
+}
+
+link:hover {
+  background-color: #4506cb;
+}

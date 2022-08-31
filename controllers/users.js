@@ -21,8 +21,7 @@ export const getUser = async (req, res) => {
 export const updateUser = async (req, res) => {
   if(req?.params?.user_id) return res.status(400).json({"Message": "User ID required"});
   const { id } = req.params
-  const { firstname, lastname, role, username, password } = req.body;
-  
+  const { firstname, lastname, role, username, password } = req.body.data;
   let encryptedPassword = password;
   if(!password.startsWith("$")) encryptedPassword = bcrypt.hashSync(password, 10);
 

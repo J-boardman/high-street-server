@@ -17,7 +17,7 @@ export const getUserByRefreshToken = (token) => db_conn.query(`SELECT * FROM use
 export const updateUserById = (id, firstname, lastname, role, username, password) => (
   db_conn.query(
     `UPDATE users
-  SET firstname = ?, lastname = ?, role = ?, username = ?, password =?
+    SET firstname = ?, lastname = ?, role = ?, username = ?, password =?
     WHERE user_id = ?`,
     [firstname, lastname, role, username, password, id]
   )
