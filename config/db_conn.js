@@ -1,10 +1,10 @@
 import mysql from "mysql2/promise"
 
-const {DB_HOST, DB_USER, DB_PWD, DB_DB} = process.env;
+const {DB_HOST, DB_USER, DB_PASSWORD, DATABASE} = process.env;
 
 export const db_conn = mysql.createPool({
-  host: DB_HOST,
-  user: DB_USER,
-  password: DB_PWD,
-  database: DB_DB,
+  host: 'localhost',
+  user: 'jayde', 
+  password: 'Password123!',
+  database: 'high_street_gym'
 });

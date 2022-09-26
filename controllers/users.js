@@ -10,8 +10,8 @@ export const getAllUsers = async(req, res) => {
 
 export const getUser = async (req, res) => {
   if(req?.params?.user_id) return res.status(400).json({"Message": "User ID required"});
-  const { id } = req.params
 
+  const { id } = req.params
   const [foundUser] = await getUserById(id).then(users => users[0]);
   
   if(!foundUser) return res.status(204).json({"Message": `User ID ${id} not found.`});
@@ -21,7 +21,7 @@ export const getUser = async (req, res) => {
 export const updateUser = async (req, res) => {
   if(req?.params?.user_id) return res.status(400).json({"Message": "User ID required"});
   const { id } = req.params
-  const { firstname, lastname, role, username, password } = req.body.data;
+  const { firstname, lastname, role, username, password } = req.body;
   let encryptedPassword = password;
   if(!password.startsWith("$")) encryptedPassword = bcrypt.hashSync(password, 10);
 

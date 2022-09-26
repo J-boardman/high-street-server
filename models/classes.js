@@ -12,7 +12,7 @@ export const createNewClass = (trainer_id, name, description, day, start_time, e
 export const getClasses = () => (
   db_conn.query(
     `SELECT class_id, trainer_id, class_name, CONCAT(firstname, " ", lastname) as trainer, description, day, start_time, end_time, level, spots_available
-    FROM classeszz
+    FROM classes
     JOIN users ON trainer_id = user_id`
   )
 );
