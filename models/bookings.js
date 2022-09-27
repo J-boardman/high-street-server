@@ -40,7 +40,11 @@ export const getBookingsByCustomerId = (id) => (
     JOIN users customers ON customers.user_id = customer_id
     WHERE customer_id = ?`, [id]
   )
-)
+);
+
+export const getJustBookingsByClassID = (id) => (
+  db_conn.query("SELECT * FROM bookings WHERE class_id = ?", [id])
+);
 
 export const getBookingsByTrainerId = (id) => (
   db_conn.query(
@@ -64,8 +68,8 @@ export const getBookingsByClassId = (id) => (
   )
 )
 
-export const checkDuplicateBookings = (customer_id, booking_id) => (
-  db_conn.query("SELECT * FROM bookings WHERE customer_id = ? AND booking_id = ?", [customer_id, booking_id])
+export const checkDuplicateBookings = (customer_id, class_id) => (
+  db_conn.query("SELECT * FROM bookings WHERE customer_id = ? AND class_id = ?", [customer_id, class_id])
 );
 
 export const deleteBookingById = (id) => db_conn.query(`DELETE FROM bookings WHERE booking_id = ?`, [id]);

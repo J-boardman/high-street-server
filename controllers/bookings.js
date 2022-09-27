@@ -3,6 +3,7 @@ import { changeClassAvailability, getClassAvailability } from "../models/classes
 
 export const createBooking = async(req, res) => {
   const { customer_id, class_id } = req.body;
+  console.log(class_id)
   
   try {
     // Check if there is any class availability

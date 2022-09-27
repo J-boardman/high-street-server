@@ -11,6 +11,7 @@ import verifyJWT from './middleware/verifyJWT.js'
 import credentials from "./middleware/credentials.js";
 
 // Public Routes
+import exports from "./routes/export.js"
 import register from "./routes/register.js"
 import login from "./routes/login.js"
 import logout from "./routes/logout.js"
@@ -53,6 +54,7 @@ app.use('/logout', logout);
 app.use('/classes', classListings)
 app.use('/refresh', refresh)
 app.use('/xml', xml)
+app.use('/export', exports)
 
 app.use(verifyJWT);
 app.use('/api/classes', classes);
