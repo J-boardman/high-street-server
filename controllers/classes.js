@@ -80,7 +80,6 @@ export const updateClass = async(req, res) => {
   const { trainer_id, class_name, description, day, start_time, end_time, level, spots_available } = req.body;
   try {
     const [results] = await updateClassById(
-      id,
       trainer_id,
       validator.escape(class_name),
       validator.escape(description),
@@ -88,7 +87,8 @@ export const updateClass = async(req, res) => {
       validator.escape(start_time),
       validator.escape(end_time),
       validator.escape(level),
-      spots_available
+      spots_available,
+      id
     );
     if(results.affectedRows > 0) return res.json({"Message": `Class ID: ${id} has been updated.`})
   } catch (error) {

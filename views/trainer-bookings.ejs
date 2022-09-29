@@ -1,46 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet href="/classList.css"?>
-<!DOCTYPE class_list
-[
-<!ELEMENT class_list (
-  heading,  
-  class_details,
-  booking,
-  link
-  )>
-  <!ELEMENT class_name (#PCDATA)>
-  <!ELEMENT trainer (name)>
-  <!ELEMENT class_day (#PCDATA)>
-  <!ELEMENT class_times (start_time, end_time)>
-  <!ELEMENT customer (id, name)>
-  <!ELEMENT start_time (#PCDATA)>
-  <!ELEMENT end_time (#PCDATA)>
-  <!ELEMENT id (#PCDATA)>
-  <!ELEMENT name (#PCDATA)>
-  ]>
-  <class_list>
-    <heading>High Street Strength</heading>
-    <class_details>
-      <class_name>Current bookings for <%= bookings[0].class_name %></class_name>
-      <trainer> 
-        <name>with <%= bookings[0].trainer %></name>
-      </trainer>
-      <class_times>
-        <class_day><%= bookings[0].day %></class_day>
-        <start_time><%= bookings[0].start_time.slice(0,5) %> -</start_time>
-        <end_time><%= bookings[0].end_time.slice(0,5) %></end_time>
-      </class_times>
-    </class_details>
+<!DOCTYPE class_bookings [<!ELEMENT class_bookings (class_details, bookings)>
+<!ELEMENT class_details (name, trainer, day, start_time, end_time)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT trainer (#PCDATA)>
+<!ELEMENT day (#PCDATA)>
+<!ELEMENT start_time (#PCDATA)>
+<!ELEMENT end_time (#PCDATA)>
+<!ELEMENT bookings (booking*)>
+<!ELEMENT booking (id, customer)>
+<!ELEMENT id (#PCDATA)>
+<!ELEMENT customer (#PCDATA)>
+]>
+<class_bookings>
+  <class_details>
+    <class_name><%= bookings[0].class_name %></class_name>
+    <trainer><%= bookings[0].trainer %></trainer>
+    <day><%= bookings[0].day %></day>
+    <start_time><%= bookings[0].start_time.slice(0,5) %></start_time>
+    <end_time><%= bookings[0].end_time.slice(0,5) %></end_time>
+  </class_details>
+  <bookings>
     <% for(let booking of bookings) { %>
     <booking>
-      <customer> 
-        <id>Booking #<%= booking.booking_id %>: </id>
-        <name><%= booking.customer %></name>
-      </customer>
+      <id><%= booking.booking_id %></id>
+      <customer><%= booking.customer %></customer>
     </booking>
     <% } %>
-    <link id="link">BACK</link>
-    document.querySelector('#link').addEventListener('click', () => window.location.href="http://localhost:3000/classes")
-    <xhtml:script xmlns:xhtml="http://www.w3.org/1999/xhtml"  type="application/javascript">
-    </xhtml:script>
-</class_list>
+  </bookings>
+</class_bookings>

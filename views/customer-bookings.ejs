@@ -1,45 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet href="/bookings.css"?>
-<!DOCTYPE bookings
-[
-<!ELEMENT bookings (
-  heading,  
-  customer,
-  booking,
-  link
-  )>
-  <!ELEMENT customer (name)>
-  <!ELEMENT booking (class_name, trainer, class_day, class_times)>
+<!DOCTYPE bookings [<!ELEMENT bookings (booking*)>
+  <!ELEMENT booking (class_name, trainer, day, start_time, end_time)>
   <!ELEMENT class_name (#PCDATA)>
-  <!ELEMENT trainer (namez)>
-  <!ELEMENT class_details (class_day, class_times)>
-  <!ELEMENT class_day (#PCDATA)>
-  <!ELEMENT class_times (start_time, end_time)>
+  <!ELEMENT trainer (#PCDATA)>
+  <!ELEMENT day (#PCDATA)>
   <!ELEMENT start_time (#PCDATA)>
   <!ELEMENT end_time (#PCDATA)>
-  <!ELEMENT name (#PCDATA)>
   ]>
   <bookings>
-    <heading>High Street Strength</heading>
-    <customer>Current bookings for 
-      <name><%= bookings[0].customer %></name>
-    </customer>
     <% for(let booking of bookings) { %>
     <booking>
       <class_name><%= booking.class_name %></class_name>
-      <trainer> 
-        <name>with <%= booking.trainer %></name>
-      </trainer>
-      <class_details>
-        <class_times> at:
-          <start_time><%= booking.start_time.slice(0,5) %> -</start_time>
-          <end_time><%= booking.end_time.slice(0,5) %></end_time>
-        </class_times>
-      </class_details>
+      <trainer><%= booking.trainer %></trainer>
+      <day><%= booking.day %></day>
+      <start_time><%= booking.start_time.slice(0,5) %> -</start_time>
+      <end_time><%= booking.end_time.slice(0,5) %></end_time>
     </booking>
   <% } %>
-  <link id="link">BACK</link>
-  <xhtml:script xmlns:xhtml="http://www.w3.org/1999/xhtml"  type="application/javascript">
-    document.querySelector('#link').addEventListener('click', () => window.location.href="http://localhost:3000/bookings")
-  </xhtml:script>
 </bookings>

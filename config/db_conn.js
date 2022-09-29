@@ -8,3 +8,5 @@ export const db_conn = mysql.createPool({
   password: 'Password123!',
   database: 'high_street_gym'
 });
+
+export const query = (...args) => db_conn.query(...args);

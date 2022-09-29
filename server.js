@@ -17,7 +17,6 @@ import login from "./routes/login.js"
 import logout from "./routes/logout.js"
 import classListings from "./routes/classes.js"
 import refresh from './routes/refresh.js';
-import xml from "./routes/xml.js"
 
 // API Routes
 import users from "./routes/api/users.js"
@@ -53,7 +52,6 @@ app.use('/login', login);
 app.use('/logout', logout);
 app.use('/classes', classListings)
 app.use('/refresh', refresh)
-app.use('/xml', xml)
 app.use('/export', exports)
 
 app.use(verifyJWT);
