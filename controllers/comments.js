@@ -4,6 +4,7 @@ export const createComment = async(req, res) => {
   const { blog_id, author_id, body } = req.body;
   try {
     const [results] = await createNewComment(blog_id, author_id, body)
+    console.log(results)
 
     res.status(200).json({"Success": `Comment created with the ID: ${results.insertId}`})
   } catch (error) {

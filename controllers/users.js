@@ -1,6 +1,6 @@
 import { deleteUserById, getUserById, getUsers, updateUserById } from "../models/users.js";
 import validator from "validator";
-import bcrypt from "bcrypt"
+import bcryptjs from "bcryptjs";
 
 export const getAllUsers = async(req, res) => {
   const [users] = await getUsers();
@@ -21,9 +21,9 @@ export const getUser = async (req, res) => {
 export const updateUser = async (req, res) => {
   if(req?.params?.user_id) return res.status(400).json({"Message": "User ID required"});
   const { id } = req.params
-  const { firstname, lastname, role, username, password } = req.body;
+  const { firstname, lastname, role, username, password } = req.body.data;
   let encryptedPassword = password;
-  if(!password.startsWith("$")) encryptedPassword = bcrypt.hashSync(password, 10);
+  if(!password.startsWith("$")) encryptedPassword = bcryptjs.hashSync(password, 10);
 
   // Validate Inputs
   if(!validator.isAlpha(firstname, 'en-AU', {ignore: ' -'})) return res.status(400).json("Invalid first name.");

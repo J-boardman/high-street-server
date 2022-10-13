@@ -1,5 +1,5 @@
 import { getUserByUsername, updateAccessToken, updateRefreshToken } from "../models/users.js";
-import bcrypt from "bcrypt";
+import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken"
 
 export default async (req, res) => {
@@ -10,7 +10,7 @@ export default async (req, res) => {
   if(!foundUser) return res.sendStatus(401);
 
   // Match password
-  const match = bcrypt.compareSync(password, foundUser.password);
+  const match = bcryptjs.compareSync(password, foundUser.password);
   if (!match) return res.sendStatus(401);
 
   const accessToken = jwt.sign(

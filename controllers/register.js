@@ -1,5 +1,5 @@
 import { createUser } from "../models/users.js"
-import bcrypt from "bcrypt"
+import bcryptjs from "bcryptjs"
 import validator from "validator";
 
 export default async (req, res) => {
@@ -18,7 +18,7 @@ export default async (req, res) => {
       validator.escape(lastname), 
       'customer', 
       validator.escape(username),
-      bcrypt.hashSync(password, 10)
+      bcryptjs.hashSync(password, 10)
     );
 
     res.status(201).json({"success": `User created with the ID: ${result.insertId}`});
