@@ -24,4 +24,4 @@ export const updateBlogById = (id, title, body) => query(
   `UPDATE blogs SET title = ?, body = ?, updated_at = NOW() WHERE blog_id = ?`, [title, body, id]
 );
 
-export const deleteBlogById = (id) => db_conn.query(`DELETE FROM blogs WHERE blog_id = ?`, [id]);
+export const deleteBlogById = (id) => query(`DELETE FROM blogs WHERE blog_id = ?`, [id]);
