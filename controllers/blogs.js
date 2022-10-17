@@ -1,15 +1,10 @@
-import validator from "validator";
 import { createNewBlog, deleteBlogById, getAllBlogs, getBlogById, updateBlogById } from "../models/blogs.js";
 
 export const createBlog = async(req, res) => {
   const { author_id, title, body } = req.body;
 
   try {
-    const [results] = await createNewBlog(
-      author_id,
-      validator.escape(title),
-      validator.escape(body)
-    )
+    const [results] = await createNewBlog(author_id, title, body)
 
     res.status(200).json({"Success": `Blog created with the ID: ${results.insertId}`})
   } catch (error) {
