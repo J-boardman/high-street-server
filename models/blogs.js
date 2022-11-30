@@ -7,7 +7,7 @@ const SELECT_FROM_JOIN = (
 
 // ? CRUD
 export const createNewBlog = (...args) => query(
-  `INSERT INTO blogs (author_id, title, body, posted_at, updated_at) VALUES (?, ?, ?, NOW(), NOW())`, [...args]
+  `INSERT INTO blogs (author_id, title, body, posted_at, updated_at) VALUES (?, ?, ?, NOW(), NOW())`, args
 );
 
 export const getAllBlogs = () => query(SELECT_FROM_JOIN);
