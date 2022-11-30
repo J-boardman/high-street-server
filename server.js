@@ -47,6 +47,7 @@ app.use(express.static("public"))
 app.set("view engine", "ejs")
 
 // Routes
+app.get("/", (req, res) => res.status(301).redirect("views/index.html"));
 app.use('/register', register);
 app.use('/login', login);
 app.use('/logout', logout);
