@@ -26,7 +26,7 @@ import comments from "./routes/api/comments.js"
 import bookings from "./routes/api/bookings.js"
 
 const app = express();
-const PORT = process.env.port || 3500;
+const { PORT } = process.env || 3500;
 
 // Credientials
 app.use(credentials);
